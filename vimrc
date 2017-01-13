@@ -38,11 +38,14 @@ Bundle 'scrooloose/nerdtree'
 " Dispatching the test runner to tmux pane
 Bundle 'tpope/vim-dispatch'
 Bundle 'yggdroot/indentline'
-Bundle 'powerline/powerline'
+
+Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+
 Bundle 'airblade/vim-gitgutter'
 Bundle 'wakatime/vim-wakatime'
-" Search files
-" Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Bundle 'vim-airline/vim-airline'
+Bundle 'mxw/vim-jsx'
+Bundle 'pangloss/vim-javascript'
 
 set tags=./tags; " Set tags directory
 
@@ -50,25 +53,31 @@ set autoindent " Auto indention should be on
 
 " Ruby stuff: Thanks Ben :)
 " ================
-syntax on                 " Enable syntax highlighting
+syntax on		  " Enable syntax highlighting
 filetype plugin indent on " Enable filetype-specific indenting and plugins
 
 augroup myvimrc
     autocmd!
     autocmd QuickFixCmdPost [^l]* cwindow
-    autocmd QuickFixCmdPost l*    lwindow
+    autocmd QuickFixCmdPost l*	  lwindow
 augroup END
 
 augroup myfiletypes
     " Clear old autocmds in group
     autocmd!
     " autoindent with two spaces, always expand tabs
-    autocmd FileType ruby,eruby,yaml,markdown set ai sw=2 sts=2 et
+    autocmd FileType ruby setlocal ts=2 sw=2 sts=2
+    autocmd FileType eruby setlocal ts=2 sw=2 sts=2
+    autocmd FileType yaml setlocal ts=2 sw=2 sts=2
+    autocmd FileType markdown setlocal ts=2 sw=2 sts=2
+    autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 augroup END
 " ================
 
 " Syntax highlighting and theme
 syntax enable
+" JSX config
+let g:jsx_ext_required = 0
 
 " Configs to make Molokai look great
 set background=light
@@ -178,7 +187,7 @@ if exists("+undofile")
     " :help undo-persistence
     " This is only present in 7.3+
     if isdirectory($HOME . '/.vim/undo') == 0
-        :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
+	:silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
     endif
     set undodir=./.vim-undo//
     set undodir+=~/.vim/undo//
