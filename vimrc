@@ -46,6 +46,7 @@ Bundle 'wakatime/vim-wakatime'
 Bundle 'vim-airline/vim-airline'
 Bundle 'mxw/vim-jsx'
 Bundle 'pangloss/vim-javascript'
+Bundle 'ngmy/vim-rubocop'
 
 set tags=./tags; " Set tags directory
 
@@ -66,12 +67,18 @@ augroup myfiletypes
     " Clear old autocmds in group
     autocmd!
     " autoindent with two spaces, always expand tabs
-    autocmd FileType ruby setlocal ts=2 sw=2 sts=2
-    autocmd FileType eruby setlocal ts=2 sw=2 sts=2
-    autocmd FileType yaml setlocal ts=2 sw=2 sts=2
-    autocmd FileType markdown setlocal ts=2 sw=2 sts=2
-    autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+    autocmd FileType ruby setlocal et sts=0 sw=2 ts=2
+    autocmd FileType eruby setlocal et sts=0 sw=2 ts=2
+    autocmd FileType yaml setlocal et sts=0 sw=2 ts=2
+    autocmd FileType markdown setlocal et sts=0 sw=2 ts=2
+    autocmd Filetype javascript setlocal et sts=0 sw=2 ts=2
+    autocmd FileType ruby,eruby,yaml,javascript autocmd BufWritePre <buffer> %s/\s\+$//e
 augroup END
+
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+
 " ================
 
 " Syntax highlighting and theme
@@ -111,6 +118,7 @@ nmap <Leader><CR> :nohlsearch<cr>
 map <leader>p :bp<CR> " ,p previous buffer
 map <leader>n :bn<CR> " ,n next buffer
 map <leader>d :bd<CR> " ,d delete buffer
+map <leader>D :%bd<CR> " ,D delete all buffers
 
 map <Leader>c :call <CR>
 " nmap <silent> <leader>c :TestFile<CR>
