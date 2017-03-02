@@ -24,7 +24,7 @@ Bundle 'tomasr/molokai'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'janx/vim-rubytest'
 " Vim Rspec
-" Bundle 'thoughtbot/vim-rspec'
+Bundle 'skwp/vim-rspec'
 " Surround your code :)
 Bundle 'tpope/vim-surround'
 " Every one should have a pair (Autogenerate pairs for "{[( )
@@ -126,6 +126,11 @@ map <Leader>c :call <CR>
 
 " map <leader>t :A<CR> " \t to jump to test file
 " map <leader>r :r<cr> " \r to jump to related file
+" RSpec.vim mappings
+map <Leader>r :call RunCurrentSpecFile()<CR>
+" map <Leader>s :call RunNearestSpec()<CR>
+" map <Leader>l :call RunLastSpec()<CR>
+" map <Leader>a :call RunAllSpecs()<CR>
 
 "" ctrlp.vim
 noremap <leader>b :CtrlPBuffer<CR>
