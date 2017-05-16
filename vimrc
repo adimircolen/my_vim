@@ -47,6 +47,7 @@ Bundle 'vim-airline/vim-airline'
 Bundle 'mxw/vim-jsx'
 Bundle 'pangloss/vim-javascript'
 Bundle 'ngmy/vim-rubocop'
+Bundle 'jeetsukumaran/vim-filesearch'
 
 set tags=./tags; " Set tags directory
 
@@ -73,6 +74,7 @@ augroup myfiletypes
     autocmd FileType markdown setlocal et sts=0 sw=2 ts=2
     autocmd Filetype javascript setlocal et sts=0 sw=2 ts=2
     autocmd FileType ruby,eruby,yaml,javascript autocmd BufWritePre <buffer> %s/\s\+$//e
+    autocmd FileType ruby compiler ruby
 augroup END
 
 let g:indent_guides_auto_colors = 0
@@ -127,7 +129,7 @@ map <Leader>c :call <CR>
 " map <leader>t :A<CR> " \t to jump to test file
 " map <leader>r :r<cr> " \r to jump to related file
 " RSpec.vim mappings
-map <Leader>r :call RunCurrentSpecFile()<CR>
+map <Leader>r :call RunSpec()<CR>
 " map <Leader>s :call RunNearestSpec()<CR>
 " map <Leader>l :call RunLastSpec()<CR>
 " map <Leader>a :call RunAllSpecs()<CR>
